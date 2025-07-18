@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt813gbmsjmig"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jf0dd"]
+
+[node name="Floor" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00934589, -0.00413167, -0.00253391)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 200, 0, 0, 0)
+mesh = SubResource("BoxMesh_jf0dd")

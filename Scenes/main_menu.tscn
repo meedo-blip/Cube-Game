@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://df1ru1ekjr4lc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erv1k"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+
+[sub_resource type="Shader" id="Shader_erv1k"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28flt"]
+shader = SubResource("Shader_erv1k")
+
+[sub_resource type="SphereMesh" id="SphereMesh_28flt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
+
+[node name="MainMenu" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_erv1k")
+
+[node name="Stars" type="Area2D" parent="."]
+position = Vector2(141, 104)
+scale = Vector2(19, 19)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(16.7895, 6)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(4.89474, 4.26316)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(0.210526, 19.8421)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D5" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(19.8421, 22)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D6" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(29.0526, 9.89474)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D7" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(41.1053, -2.26316)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D8" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(28.4737, -0.421053)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D9" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(23.2105, 6.42105)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D10" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(42.4737, 12.3684)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D11" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(38.4211, 4.94737)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D12" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(35.3158, 16.3684)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="MeshInstance2D13" type="MeshInstance2D" parent="Stars"]
+material = SubResource("ShaderMaterial_28flt")
+position = Vector2(40.7895, 21.4737)
+mesh = SubResource("SphereMesh_28flt")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_28flt")
+
+[node name="Button" type="Button" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

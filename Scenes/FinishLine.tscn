@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://caal24cat07y"]
+
+[ext_resource type="Material" uid="uid://dhkyabyn0hqxx" path="res://Materials/finish_pole.tres" id="1_58aop"]
+[ext_resource type="Script" uid="uid://5swy5ry5re6c" path="res://Scripts/finish_line.gd" id="1_yeeye"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_svihk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yeeye"]
+albedo_color = Color(1, 0.588235, 1, 1)
+emission_enabled = true
+emission = Color(1, 0.588235, 1, 1)
+emission_energy_multiplier = 2.04
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_58aop"]
+
+[node name="FinishLine" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1.36287, 0, 0, 0, 1, -2.88028, 0, 0)
+script = ExtResource("1_yeeye")
+
+[node name="Left Column" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.350056, 0, 0, 0, 1.50024, 0, 0, 0, 0.350056, -3.99198, 0.00463951, -0.0053978)
+mesh = SubResource("CylinderMesh_svihk")
+surface_material_override/0 = SubResource("StandardMaterial3D_yeeye")
+
+[node name="Right Column" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 1.5, 0, 0, 0, 0.35, 4, 0, 0)
+mesh = SubResource("CylinderMesh_svihk")
+surface_material_override/0 = ExtResource("1_58aop")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.907819, 0, 0, 0, 2.88678, 0, 0, 0, 0.276614, 0, 0, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(8.97624, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_58aop")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

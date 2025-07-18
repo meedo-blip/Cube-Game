@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://87jy4kwlabgo"]
+
+[ext_resource type="Script" uid="uid://h6o0thlxlxw" path="res://Scripts/player.gd" id="1_r150o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r150o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1w88"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_idj7w"]
+size = Vector3(10, 1, 200)
+
+[sub_resource type="BoxMesh" id="BoxMesh_idj7w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kln2b"]
+albedo_color = Color(1, 0.282353, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c1w88"]
+
+[node name="Main" type="Node"]
+
+[node name="Floor" type="RigidBody3D" parent="."]
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 200, 0, 0, 0)
+mesh = SubResource("BoxMesh_r150o")
+surface_material_override/0 = SubResource("StandardMaterial3D_c1w88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_idj7w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0510984, 0.998694, 0, -0.998694, -0.0510984, 14.6722, 26.6578, 0.649035)
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.004, 2.055, -93.0729)
+script = ExtResource("1_r150o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("BoxMesh_idj7w")
+surface_material_override/0 = SubResource("StandardMaterial3D_kln2b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_c1w88")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-0.99961, 0.021195, 0.0182097, 0.0259095, 0.947087, 0.31993, -0.0104653, 0.320277, -0.947266, 0.0605941, 1.77947, -3.05759)
+fov = 55.6363
