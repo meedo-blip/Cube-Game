@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0qe3qggudi11"]
+
+[ext_resource type="Script" uid="uid://cdh6pn7nygdic" path="res://Scripts/obstacle.gd" id="1_rvx1i"]
+[ext_resource type="Material" uid="uid://cua8ou7vvhpx" path="res://Materials/new_particle_process_material.tres" id="2_a6yce"]
+[ext_resource type="AudioStream" uid="uid://cn4y6q5omxo88" path="res://Assets/Sounds/Thump.mp3" id="3_p763d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_af0pv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my8i3"]
+albedo_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_km3lo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbw6q"]
+albedo_color = Color(0.122252, 0.122252, 0.122252, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hv6s5"]
+material = SubResource("StandardMaterial3D_pbw6q")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Obstacle" type="RigidBody3D"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81659, -66.0945)
+collision_layer = 2
+collision_mask = 6
+contact_monitor = true
+max_contacts_reported = 14
+script = ExtResource("1_rvx1i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_af0pv")
+surface_material_override/0 = SubResource("StandardMaterial3D_my8i3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_km3lo")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.483386, 0, 0, 0, 0.070202, 0, 0, 0, 0.110923, 0, 0, -0.621)
+explosiveness = 0.35
+randomness = 0.4
+process_material = ExtResource("2_a6yce")
+draw_pass_1 = SubResource("BoxMesh_hv6s5")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_p763d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

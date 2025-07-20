@@ -31,11 +31,11 @@ albedo_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pbw6q"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbw6q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vy5pj"]
 albedo_color = Color(0.122252, 0.122252, 0.122252, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_v1gob"]
-material = SubResource("StandardMaterial3D_pbw6q")
+material = SubResource("StandardMaterial3D_vy5pj")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Main" type="Node" groups=["player"]]
@@ -59,7 +59,7 @@ shape = SubResource("BoxShape3D_idj7w")
 transform = Transform3D(0.895215, -0.0227713, 0.445053, -0.445635, -0.045744, 0.894045, 0, -0.998694, -0.0510984, 14.6722, 26.6578, 0.649035)
 shadow_enabled = true
 
-[node name="Player" type="RigidBody3D" parent="."]
+[node name="Player" type="RigidBody3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.004, 2.055, -93.0729)
 collision_mask = 14
 axis_lock_angular_x = true
@@ -82,14 +82,13 @@ fov = 55.6363
 
 [node name="Obstacles" type="Node" parent="."]
 
-[node name="Obstacle" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81659, -66.0945)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -108,14 +107,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle2" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle2" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 4.70034, 2.81659, -66.0945)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.552759, 0, 0)
@@ -135,14 +133,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle2"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle3" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle3" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 5.78938, 2.81659, -49.2632)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle3"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -161,14 +158,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle3"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle4" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle4" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 1.06223, 2.81659, -49.2632)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle4"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -187,14 +183,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle4"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle5" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle5" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 1.06223, 2.81659, -35.0435)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle5"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -213,14 +208,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle5"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle6" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle6" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -4.3876, 2.81659, -35.0435)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle6"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -239,14 +233,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle6"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle7" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle7" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -4.3876, 2.81659, -23.0054)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle7"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -265,14 +258,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle7"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle8" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle8" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.781769, 2.81659, -23.0054)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle8"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -291,14 +283,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle8"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle9" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle9" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.781769, 2.81659, -12.6615)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle9"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -317,14 +308,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle9"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle10" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle10" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 2.94272, 2.81659, -12.6615)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle10"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -343,14 +333,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle10"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle11" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle11" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 2.94272, 2.81659, -0.303802)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle11"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -369,14 +358,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle11"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle12" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle12" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -4.28961, 2.81659, -0.303802)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle12"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -395,14 +383,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle12"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle13" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
+[node name="Obstacle13" type="RigidBody3D" parent="Obstacles"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -4.28961, 2.81659, 8.87616)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle13"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -421,14 +408,13 @@ draw_pass_1 = SubResource("BoxMesh_v1gob")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Obstacles/Obstacle13"]
 stream = ExtResource("5_pbw6q")
 
-[node name="Obstacle14" type="RigidBody3D" parent="Obstacles" node_paths=PackedStringArray("player")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.67664, 2.81659, 8.87616)
+[node name="Obstacle14" type="RigidBody3D" parent="Obstacles"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.680555, 2.81463, 8.87643)
 collision_layer = 2
 collision_mask = 6
 contact_monitor = true
 max_contacts_reported = 14
 script = ExtResource("3_kln2b")
-player = NodePath("../../Player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/Obstacle14"]
 mesh = SubResource("BoxMesh_kln2b")
@@ -457,6 +443,9 @@ environment = ExtResource("7_jw32o")
 script = ExtResource("8_50glp")
 
 [node name="UI" parent="." instance=ExtResource("9_vy5pj")]
+
+[node name="PlayerSpawn" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.004, 2.005, -93.073)
 
 [connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
 [connection signal="body_entered" from="Obstacles/Obstacle" to="Obstacles/Obstacle" method="_on_body_entered"]

@@ -2,6 +2,8 @@ extends RigidBody3D
 
 class_name Player
 
+signal in_void
+
 const speed = 20
 const horizontal_speed = 8
 const vertical_speed_increment = .1
@@ -18,11 +20,14 @@ func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
+	if position.y < -10:
+		in_void.emit()
+	
 	if (input.z != 0):
 		linear_velocity.z = lerpf(linear_velocity.z, speed , sign(input.z) * vertical_speed_increment)
 	if(input.x != 0):
 		linear_velocity.x = lerpf(linear_velocity.x, horizontal_speed, sign(input.x) * horizonatal_speed_increment)
-		
+	
 func _input(event: InputEvent) -> void:
 	input.z = Input.get_action_raw_strength("forward") - Input.get_action_raw_strength("slow_down")
 	input.x = Input.get_action_raw_strength("left") - Input.get_action_raw_strength("right") 
