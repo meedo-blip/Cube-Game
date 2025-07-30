@@ -70,8 +70,10 @@ func start_level():
 		child.queue_free()
 
 	var z = obs_start_z
+	var switch = true
 	
 	while z < obs_end_z:
+		switch = !switch
 		var num = randi_range(1,3)
 		for i in range(0, num):
 			var x = randf_range(obs_start_x, obs_end_x)
@@ -82,24 +84,18 @@ func start_level():
 			obs.position.y = y
 			obs.position.z = z
 			obstacles.add_child(obs)
-			
-		z += obs_distance_z
-
-	z = obs_start_z
-	
-	while z < obs_end_z:		
-		var x = randf_range(obs_start_x, obs_end_x)
-		var y = randf_range(max_obs_height, max_obs_height + 2)
 		
-		var obs: SpikeBall = spikeBallScene.instantiate()
-		obs.position.x = x
-		obs.position.y = y
-		obs.position.z = z
-		obstacles.add_child(obs)
+		if switch:	
+			var x = randf_range(obs_start_x, obs_end_x)
+			var y = randf_range(max_obs_height, max_obs_height + 2)
+			
+			var obs: SpikeBall = spikeBallScene.instantiate()
+			obs.position.x = x
+			obs.position.y = y
+			obs.position.z = z
+			obstacles.add_child(obs)
 			
 		z += obs_distance_z
-	
-
 		
 	player.position = Vector3(player_spawn.position)
 	player.freeze = false

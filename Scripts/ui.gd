@@ -10,9 +10,14 @@ signal start_next_level
 @onready var wins_label: Label = $WinsLabel
 @onready var most_wins_label: Label = $MostWinsLabel
 @onready var best_time_label: Label = $BestTimeLabel
+@onready var audio_button: TextureButton = $AudioButton
+
+var AUDIO_ON: Texture2D = ImageTexture.create_from_image(Image.load_from_file("res://Assets/Images/audio-on.png"))
+var AUDIO_OFF: Texture2D =  ImageTexture.create_from_image(Image.load_from_file("res://Assets/Images/audio-off.png"))
 
 var time_passed_s = 0.0;
 var time_stopped = false
+var is_muted = false
 
 func _ready() -> void:
 	next_level_container.visible = false
@@ -42,3 +47,14 @@ func set_best_time(best_time: float):
 
 func set_wins(wins: int):
 	wins_label.text = "Wins:\n" + str(wins)
+
+
+func _on_audio_button_pressed() -> void:
+	print("hi")
+	is_muted = !is_muted
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), is_muted)
+	if is_muted:
+		audio_button.texture_normal = AUDIO_OFF
+	else:
+		audio_button.texture_normal = AUDIO_ON
+		

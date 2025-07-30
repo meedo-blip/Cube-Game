@@ -22,5 +22,6 @@ shape = SubResource("SphereShape3D_yrw8b")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_esy8q")
+volume_db = -10.063
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
