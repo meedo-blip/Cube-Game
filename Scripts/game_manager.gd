@@ -9,6 +9,8 @@ extends Node
 var localStorage = LocalStorage.new()
 
 var obstacleScene = preload("res://Scenes/obstacle.tscn")
+var spikeBallScene = preload("res://Scenes/spike_ball.tscn")
+
 var num_wins = 0
 
 var best_time = 0.0
@@ -24,8 +26,6 @@ const obs_end_z = 90
 const obs_start_x = -4
 const obs_end_x = 4
 
-
-
 func _ready() -> void:
 	# Wait for all nodes to load
 	await get_tree().process_frame
@@ -33,6 +33,7 @@ func _ready() -> void:
 	finish_line.level_won.connect(on_level_won)
 	ui.start_next_level.connect(start_level)
 	player.in_void.connect(player_in_void)
+	Signals.spike_hit.connect(game_lost)
 	
 	localStorage.set_password("mafhhamjmamahm")
 	
@@ -55,6 +56,14 @@ func _ready() -> void:
 	
 	start_level()
 	
+func _input(event):
+	if event.is_action_pressed("ui_fullscreen"):
+		var current_mode = DisplayServer.window_get_mode()
+		if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 func start_level():
 	
 	for child in obstacles.get_children():
@@ -75,7 +84,23 @@ func start_level():
 			obstacles.add_child(obs)
 			
 		z += obs_distance_z
+
+	z = obs_start_z
 	
+	while z < obs_end_z:		
+		var x = randf_range(obs_start_x, obs_end_x)
+		var y = randf_range(max_obs_height, max_obs_height + 2)
+		
+		var obs: SpikeBall = spikeBallScene.instantiate()
+		obs.position.x = x
+		obs.position.y = y
+		obs.position.z = z
+		obstacles.add_child(obs)
+			
+		z += obs_distance_z
+	
+
+		
 	player.position = Vector3(player_spawn.position)
 	player.freeze = false
 	
@@ -101,3 +126,8 @@ func on_level_won():
 func player_in_void():
 	player.position = Vector3(player_spawn.position) 
 	player.linear_velocity = Vector3.ZERO
+
+func game_lost():
+	num_wins = 0
+	ui.set_wins(0)
+	player_in_void()

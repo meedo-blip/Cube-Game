@@ -5,7 +5,7 @@ class_name Player
 signal in_void
 
 const speed = 20
-const horizontal_speed = 8
+const horizontal_speed = 5
 const vertical_speed_increment = .1
 const horizonatal_speed_increment = .1
 const jump_force = 8
@@ -40,4 +40,6 @@ func _input(event: InputEvent) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body is Floor:
 		onGround = true
+	if body is SpikeBall:
+		Signals.spike_hit.emit()
 		

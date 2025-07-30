@@ -39,3 +39,6 @@ func set_most_wins(most_wins: int):
 	
 func set_best_time(best_time: float):
 	best_time_label.text = "Best Time:\n" + str(round(best_time * 100) / 100)
+
+func set_wins(wins: int):
+	wins_label.text = "Wins:\n" + str(wins)
