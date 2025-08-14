@@ -1,4 +1,6 @@
 [gd_resource type="Environment" format=3 uid="uid://cmwicpuelhmyo"]
 
 [resource]
+ssao_enabled = true
+sdfgi_enabled = true
 glow_enabled = true

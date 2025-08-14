@@ -32,6 +32,7 @@ func _ready() -> void:
 	
 	finish_line.level_won.connect(on_level_won)
 	ui.start_next_level.connect(start_level)
+	ui.continue_level.connect(continue_level)
 	player.in_void.connect(player_in_void)
 	Signals.spike_hit.connect(game_lost)
 	
@@ -63,7 +64,11 @@ func _input(event):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-
+	if event is InputEventKey:
+		if (event as InputEventKey).keycode == KEY_ESCAPE:
+			player.freeze = true
+			ui.pause(false)
+	
 func start_level():
 	
 	for child in obstacles.get_children():
@@ -99,14 +104,18 @@ func start_level():
 		
 	player.position = Vector3(player_spawn.position)
 	player.freeze = false
-	
+
+func continue_level():
+	player.freeze = false
+	ui.unpause()
+
 func on_level_won():
 	print("Level won")
 	player.linear_velocity = Vector3.ZERO
 	player.freeze = true
 	ui.on_level_finished()
 	num_wins += 1
-	ui.wins_label.text = "Wins:\n" + str(num_wins)
+	ui.set_wins(num_wins)
 	
 	if best_time == 0.0 or ui.time_passed_s < best_time:
 		best_time = ui.time_passed_s
